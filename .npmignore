@@ -1,0 +1,15 @@
+npm-debug.log
+.idea/
+node_modules/
+site/
+src/
+.gitignore
+.travis.yml
+deploy_key
+deploy_key.pub
+deploy_key.enc
+karma.conf.js
+ts-serializer.ts
+tsconfig.json
+typedoc.json
+webpack.config.js

@@ -1,0 +1,54 @@
+{
+  "name": "ts-serializer",
+  "version": "0.10.2",
+  "description": "",
+  "main": "dist/ts-serializer.js",
+  "module": "dist/ts-serializer.js",
+  "typings": "dist/ts-serializer.d.ts",
+  "scripts": {
+    "build": "webpack && npm run test && npm run doc",
+    "test": "rm -rf site/reports && karma start",
+    "doc": "rm -rf site/doc && typedoc --options typedoc.json --exclude '**/*.spec.ts' ./src",
+    "prepublish": "npm run build",
+    "deploy": "chmod 600 deploy_key && eval `ssh-agent -s` && ssh-add deploy_key && gh-pages-deploy"
+  },
+  "gh-pages-deploy": {
+    "staticpath": "site",
+    "cname": "serializer.dpopescu.me",
+    "prep": [
+      "build"
+    ],
+    "post": [],
+    "noprompt": true
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dpopescu/ts-serializer.git"
+  },
+  "author": {
+    "name": "Daniel Popescu",
+    "email": "danielpopescu95@gmail.com"
+  },
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/dpopescu/ts-serializer/issues"
+  },
+  "homepage": "https://github.com/dpopescu/ts-serializer#readme",
+  "devDependencies": {
+    "@types/jasmine": "^2.5.35",
+    "clean-webpack-plugin": "^0.1.13",
+    "gh-pages-deploy": "^0.4.2",
+    "jasmine": "^2.5.2",
+    "karma": "^1.2.0",
+    "karma-html-reporter": "^0.2.7",
+    "karma-jasmine": "^1.0.2",
+    "karma-mocha-reporter": "^2.2.0",
+    "karma-phantomjs-launcher": "^1.0.2",
+    "karma-remap-istanbul": "^0.2.1",
+    "karma-typescript": "^2.0.6",
+    "ts-loader": "^0.9.5",
+    "typedoc": "^0.4.5",
+    "typescript": "^2.0.3",
+    "webpack": "^1.13.3"
+  }
+}

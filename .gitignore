@@ -1,0 +1,7 @@
+npm-debug.log
+.idea/
+node_modules/
+site/
+dist/
+deploy_key
+deploy_key.pub

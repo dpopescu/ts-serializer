@@ -3,6 +3,7 @@ import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {LocationStrategy, HashLocationStrategy} from '@angular/common';
 
 import {AppComponent} from './app.component';
 import {ExternalPageComponent} from './external-page/external-page.component';
@@ -40,7 +41,7 @@ import { SafePipePipe } from './safe-pipe.pipe';
       }
     ])
   ],
-  providers: [],
+  providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent]
 })
 export class AppModule {

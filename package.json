@@ -1,6 +1,6 @@
 {
   "name": "ts-serializer",
-  "version": "0.10.2",
+  "version": "1.0.0",
   "description": "",
   "main": "dist/ts-serializer.js",
   "module": "dist/ts-serializer.js",

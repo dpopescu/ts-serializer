@@ -1,3 +1,6 @@
+/*
+ * Copyright 2016 - Daniel Popescu <dpopescu@adobe.com>
+ */
 /**
  * Defines the [[Serialize]] decorator options.
  */

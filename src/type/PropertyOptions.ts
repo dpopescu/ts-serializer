@@ -1,3 +1,6 @@
+/*
+ * Copyright 2016 - Daniel Popescu <dpopescu@adobe.com>
+ */
 import {ClassOptions} from './ClassOptions';
 
 /**

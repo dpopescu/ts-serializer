@@ -1,3 +1,6 @@
+/*
+ * Copyright 2016 - Daniel Popescu <dpopescu@adobe.com>
+ */
 import {Serializable} from '../type/Serializable';
 import {ClassOptions} from '../type/ClassOptions';
 import {PropertyOptions} from '../type/PropertyOptions';

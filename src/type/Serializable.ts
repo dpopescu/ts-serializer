@@ -1,3 +1,6 @@
+/*
+ * Copyright 2016 - Daniel Popescu <dpopescu@adobe.com>
+ */
 import {PropertyOptions} from './PropertyOptions';
 /**
  * Helper class to represent serializable objects. The actual implementation of the [[Serializable.serialize]] and [[Serializable.deserialize]]

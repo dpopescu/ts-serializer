@@ -1,8 +1,8 @@
 {
   "name": "TS Serializer Docs",
   "mode": "file",
-  "out": "site/doc",
-  "theme": "default",
+  "out": "site/reports/doc",
+  "theme": "typedoc_theme/",
   "ignoreCompilerErrors": "true",
   "experimentalDecorators": "true",
   "emitDecoratorMetadata": "true",

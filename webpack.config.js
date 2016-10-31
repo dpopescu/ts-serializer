@@ -18,7 +18,7 @@ module.exports = {
 		loaders:[{
 			test: /\.ts?$/,
 			loader: 'ts',
-			exclude: [/node_modules/]
+			exclude: [/node_modules/, /example/]
 		}]
 	},
 	plugins:[

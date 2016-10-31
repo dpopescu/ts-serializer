@@ -22,13 +22,16 @@ module.exports = function (config) {
 			pageTitle: 'TS Serializer Test Results',
 			urlFriendlyName: false,
 			preserveDescribeNesting: true,
-			foldAll: true,
+			foldAll: false,
 			reportName: 'unit-tests-results'
 		},
 		karmaTypescriptConfig: {
 			reports: {
 				"html": "site/reports/coverage"
 			}
+		},
+		coverageReporter:{
+			subdir: '.'
 		},
 		reporters: ['mocha', 'karma-typescript', 'html'],
 		colors: true,

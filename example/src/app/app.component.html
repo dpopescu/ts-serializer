@@ -1,0 +1,17 @@
+<nav class="navbar navbar-dark bg-inverse navbar-fixed-top">
+  <a routerLink="/" class="navbar-brand">TS Serializer</a>
+  <ul class="nav navbar-nav">
+    <li class="nav-item" routerLinkActive="active">
+      <a routerLink="/docs" class="nav-link">Docs</a>
+    </li>
+    <li class="nav-item">
+      <a routerLink="/unit_tests" class="nav-link">Unit Tests</a>
+    </li>
+    <li class="nav-item">
+      <a routerLink="/coverage" class="nav-link">Test Coverage</a>
+    </li>
+  </ul>
+</nav>
+<div class="container-fluid">
+  <router-outlet></router-outlet>
+</div>

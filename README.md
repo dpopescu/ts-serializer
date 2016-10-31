@@ -2,12 +2,12 @@
 **TS Serializer** provides `TypeScript` decorators to help developers with serializing/deserializing TypeScript classes into and from JSON objects.
  
 ## Installation
-###### Using npm:
+### Using npm:
 `npm install --save ts-serializer`
 
 ## Usage
-##### TypeScript
-###### Deserialization:
+### TypeScript
+#### Deserialization:
 ```TypeScript 
 import {Serialize, SerializeProperty, Serializable} from 'ts-serializer';
 
@@ -29,7 +29,8 @@ instance.deserialize({
 
 console.log(instance.name); // Prints 'Some Value'
 ```
-###### Serialization:
+---
+#### Serialization:
 ```TypeScript
 import {Serialize, SerializeProperty, Serializable} from 'ts-serializer';
 
@@ -46,10 +47,10 @@ instance.name = 'Some Value';
 
 console.log(instance.serialize()); // Prints {username:'Some Value'}
 ```
-##### JavaScript
+### JavaScript
 > **Note:** Although the library was designed to be used as a decorator in TypeScript, it doesn't matter that it can't be used in plain old JavaScript. The syntax can be a little messy but the result is the same.
 
-###### Deserialization:
+#### Deserialization:
 ```JavaScript
 var Serialize = TSerializer.Serialize;
 var SerializeProperty = TSerializer.SerializeProperty;
@@ -73,7 +74,8 @@ instance.deserialize({
 
 console.log(instance.name); // Prints 'Some Value'
 ```
-###### Serialization:
+---
+#### Serialization:
 ```JavaScript
 var Serialize = TSerializer.Serialize;
 var SerializeProperty = TSerializer.SerializeProperty;
@@ -93,8 +95,8 @@ console.log(instance.serialize()); // Prints {username:'Some Value'}
 ```
 ## Library Options
 The library allows you to pass different serialization/deserialization options both on class level and on property level.  
-##### Class Options
-###### root
+### Class Options
+#### root
 When you want to deserialize just a child object from the JSON you can use the `root` option.
 ```TypeScript
 @Serialize({
@@ -114,8 +116,8 @@ instance.deserialize({
 
 console.log(instance.name); // Prints 'Some Value'
 ```
-##### Property Options
-###### root
+### Property Options
+#### root
 The `root` option can also be used on a property.
 
 > **Note:** If `root` is already specified at class level the value is inherited to all class properties. If you want to override this, you can use hte `.` value. In this case, the property will be mapped up one level.
@@ -138,7 +140,8 @@ instance.deserialize({
 
 console.log(instance.name); // Prints 'Some Value'
 ```
-###### map
+---
+#### map
 When the property name in the JSON doesn't match with your class properties, the `map` option can be used. This option maps a property from the JSON with a different property from your class.
 ```TypeScript
 @Serialize({})
@@ -156,7 +159,8 @@ instance.deserialize({
 
 console.log(instance.name); // Prints 'Some Value'
 ```
-###### list
+---
+#### list
 The `list` option can be used when the JSON property value is a list of items. 
 ```TypeScript
 @Serialize({})
@@ -174,7 +178,8 @@ instance.deserialize({
 
 console.log(instance.items); // Prints ['a', 'b', 'c']
 ```
-###### type
+---
+#### type
 When you want to use non-primitive types for deserialization use the `type` option.
 
 > **Note:** The `type` object should also be a `Serializable` object.

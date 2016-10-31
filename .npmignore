@@ -4,6 +4,7 @@ node_modules/
 site/
 src/
 typedoc_theme/
+example/
 .gitignore
 .travis.yml
 deploy_key

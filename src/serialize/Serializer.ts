@@ -19,6 +19,11 @@ export class Serializer {
 	private static deserializeItem(options: PropertyOptions, value: Object) {
 		if (options.type) {
 			let item = new options.type();
+
+            if(options.optional && !value) {
+                return item;
+            }
+
 			item.deserialize(value);
 			return item;
 		} else {
@@ -92,7 +97,7 @@ export class Serializer {
 			let options: PropertyOptions = target.prototype._serializeMap[name];
 			let rootPath: string = options.root || classOptions.root || null;
 			let mapName: string = options.map || options.name;
-			let value: any = jsonObject[mapName];
+			let value: any = jsonObject[mapName] || null;
 
 			if (rootPath && rootPath != '.') {
 				value = jsonObject[rootPath][mapName];

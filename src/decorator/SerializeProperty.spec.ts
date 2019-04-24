@@ -44,4 +44,21 @@ describe('SerializeProperty decorator', () => {
 			}
 		});
 	});
+    it("should add the correct optional option to the serializeMap", () => {
+        class Test extends Serializable {
+            @SerializeProperty({
+                map: "mapped_test",
+                optional: true
+            })
+            test: string;
+        }
+
+        expect(Test.prototype._serializeMap).toEqual({
+            test: {
+                name: "test",
+                map: "mapped_test",
+                optional: true
+            }
+        });
+    });
 });

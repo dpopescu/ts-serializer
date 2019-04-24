@@ -1,7 +1,7 @@
 /*
  * Copyright 2016 - Daniel Popescu <dpopescu@adobe.com>
  */
-import {PropertyOptions} from '../type/PropertyOptions';
+import { PropertyOptions } from '../type/PropertyOptions';
 
 /**
  * # SerializeProperty decorator
@@ -34,12 +34,14 @@ import {PropertyOptions} from '../type/PropertyOptions';
  * @param options - A set of options to use when decorating a property.
  * @returns {PropertyDecorator}
  */
-export function SerializeProperty(options: PropertyOptions = {}): PropertyDecorator {
-	return function (target: Object, name: string) {
-		if (!target.constructor.prototype._serializeMap) {
-			target.constructor.prototype._serializeMap = {};
-		}
-		options.name = name;
-		target.constructor.prototype._serializeMap[name] = options;
-	}
+export function SerializeProperty(
+  options: PropertyOptions = {}
+): PropertyDecorator {
+  return (target: object, name: string) => {
+    if (!target.constructor.prototype._serializeMap) {
+      target.constructor.prototype._serializeMap = {};
+    }
+    options.name = name;
+    target.constructor.prototype._serializeMap[name] = options;
+  };
 }

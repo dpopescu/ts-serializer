@@ -118,4 +118,38 @@ export interface PropertyOptions extends ClassOptions {
 	 * ```
 	 */
 	type?: any;
+    /**
+    * Specifies if the property is optional or not.
+    *
+    * ## Example
+    * ```JavaScript
+    *  @Serialize()
+    *  class User extends Serializable {
+    *      @SerializeProperty()
+    *      name:string;
+    *      @SerializeProperty({
+    * 		optional: true
+    * 	  })
+    *      age:number;
+    *  }
+    * ```
+    * ### Deserialize
+    * ```JavaScript
+    *  let user:User = new User();
+    *  user.deserialize({
+    *      name: 'John'
+    *  });
+    *
+    *  console.log(profile.name); // Will output 'John'
+    *  console.log(profile.age); // Will output 'null'
+    * ```
+    * ### Serialize
+    * ```JavaScript
+    *  let user:User = new User();
+    *  user.name = 'John';
+    *
+    *  console.log(user.serialize()); // Will output {name:'John', age:'null}
+    * ```
+    */
+    optional?: any;
 }

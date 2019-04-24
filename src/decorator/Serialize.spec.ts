@@ -1,48 +1,47 @@
-import {Serializable} from '../type/Serializable';
-import {Serialize} from './Serialize';
-import {Serializer} from '../serialize/Serializer';
+import { Serializable } from '../type/Serializable';
+import { Serialize } from './Serialize';
+import { Serializer } from '../serialize/Serializer';
 
 describe('Serialize Decorator', () => {
-	it('should add serialize and deserialize methods to the target class prototype', () => {
-		@Serialize({})
-		class Test extends Serializable {
+  it('should add serialize and deserialize methods to the target class prototype', () => {
+    @Serialize({})
+    class Test extends Serializable {}
 
-		}
+    const test = new Test();
+    expect(test.serialize).toBeDefined();
+    expect(test.deserialize).toBeDefined();
+  });
 
-		let test = new Test();
-		expect(test.serialize).toBeDefined();
-		expect(test.deserialize).toBeDefined();
-	});
+  it('should call Serializer.serialize with correct parameters', () => {
+    spyOn(Serializer, 'serialize');
 
-	it('should call Serializer.serialize with correct parameters', () => {
-		spyOn(Serializer, 'serialize');
+    @Serialize({})
+    class Test extends Serializable {}
 
-		@Serialize({})
-		class Test extends Serializable {
+    const test = new Test();
+    test.serialize();
 
-		}
+    expect(Serializer.serialize).toHaveBeenCalledWith(Test, test, {});
+  });
 
-		let test = new Test();
-		test.serialize();
+  it('should call Serializer.deserialize with correct parameters', () => {
+    spyOn(Serializer, 'deserialize');
 
-		expect(Serializer.serialize).toHaveBeenCalledWith(Test, test, {});
-	});
+    @Serialize({})
+    class Test extends Serializable {}
 
-	it('should call Serializer.deserialize with correct parameters', () => {
-		spyOn(Serializer, 'deserialize');
+    const test = new Test();
+    test.deserialize({
+      test: 'test',
+    });
 
-		@Serialize({})
-		class Test extends Serializable {
-
-		}
-
-		let test = new Test();
-		test.deserialize({
-			test: 'test'
-		});
-
-		expect(Serializer.deserialize).toHaveBeenCalledWith(Test, test, {
-			test: 'test'
-		}, {});
-	});
+    expect(Serializer.deserialize).toHaveBeenCalledWith(
+      Test,
+      test,
+      {
+        test: 'test',
+      },
+      {}
+    );
+  });
 });

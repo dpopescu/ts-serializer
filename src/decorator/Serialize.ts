@@ -1,8 +1,8 @@
 /*
  * Copyright 2016 - Daniel Popescu <dpopescu@adobe.com>
  */
-import {Serializer} from '../serialize/Serializer';
-import {ClassOptions} from '../type/ClassOptions';
+import { Serializer } from '../serialize/Serializer';
+import { ClassOptions } from '../type/ClassOptions';
 
 /**
  * # Serialize decorators
@@ -29,14 +29,12 @@ import {ClassOptions} from '../type/ClassOptions';
  * @returns {ClassDecorator}
  */
 export function Serialize(classOptions: ClassOptions): ClassDecorator {
-	return function (target): void {
-		target.prototype.deserialize = function (jsonObject: Object): void {
-			Serializer.deserialize(target, this, jsonObject, classOptions);
-		};
-		target.prototype.serialize = function (): Object {
-			return Serializer.serialize(target, this, classOptions);
-		};
-	}
+  return (target): void => {
+    target.prototype.deserialize = function(jsonObject: object): void {
+      Serializer.deserialize(target, this, jsonObject, classOptions);
+    };
+    target.prototype.serialize = function(): object {
+      return Serializer.serialize(target, this, classOptions);
+    };
+  };
 }
-
-

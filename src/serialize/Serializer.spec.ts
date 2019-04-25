@@ -151,7 +151,7 @@ describe('Serializer', () => {
     });
     it('should return a json object for properties with type option', () => {
       const test = function Test(): void {
-        this.serialize = function() {
+        this.serialize = () => {
           return {
             test: 'test',
           };
@@ -184,7 +184,7 @@ describe('Serializer', () => {
     });
     it('should return a json object for properties with both list and type options', () => {
       const test = function Test(): void {
-        this.serialize = function() {
+        this.serialize = () => {
           return {
             test: 'test',
           };
@@ -215,237 +215,7 @@ describe('Serializer', () => {
         c: 'c value',
       });
     });
-  });
-  describe('deserialize()', () => {
-    it('should leave the context unchanged if the _serializeMap is empty', () => {
-      const context = {};
-
-      Serializer.deserialize(
-        {
-          prototype: {
-            _serializeMap: {},
-          },
-        },
-        context,
-        {
-          a: 'a',
-          b: 'b',
-          c: 'c',
-        }
-      );
-
-      expect(context).toEqual({});
-    });
-    it('should map a simple json object to an existing context', () => {
-      const context = {};
-
-      Serializer.deserialize(
-        {
-          prototype: {
-            _serializeMap: {
-              a: { name: 'a' },
-              b: { name: 'b' },
-              c: { name: 'c' },
-            },
-          },
-        },
-        context,
-        {
-          a: 'a',
-          b: 'b',
-          c: 'c',
-        }
-      );
-
-      expect(context).toEqual({
-        a: 'a',
-        b: 'b',
-        c: 'c',
-      });
-    });
-    it('should map a json object to a context with class level root option', () => {
-      const context = {};
-
-      Serializer.deserialize(
-        {
-          prototype: {
-            _serializeMap: {
-              a: { name: 'a' },
-              b: { name: 'b' },
-              c: { name: 'c' },
-            },
-          },
-        },
-        context,
-        {
-          someObject: {
-            a: 'a',
-            b: 'b',
-            c: 'c',
-          },
-        },
-        { root: 'someObject' }
-      );
-
-      expect(context).toEqual({
-        a: 'a',
-        b: 'b',
-        c: 'c',
-      });
-    });
-    it('should map a json object to a context property with root option', () => {
-      const context = {};
-
-      Serializer.deserialize(
-        {
-          prototype: {
-            _serializeMap: {
-              a: { name: 'a' },
-              b: { name: 'b', root: 'someObject' },
-              c: { name: 'c' },
-            },
-          },
-        },
-        context,
-        {
-          a: 'a',
-          someObject: {
-            b: 'b',
-          },
-          c: 'c',
-        },
-        {}
-      );
-
-      expect(context).toEqual({
-        a: 'a',
-        b: 'b',
-        c: 'c',
-      });
-    });
-    it('should map a json object to a context property with map option', () => {
-      const context = {};
-
-      Serializer.deserialize(
-        {
-          prototype: {
-            _serializeMap: {
-              a: { name: 'a' },
-              b: { name: 'b', map: 'mapped_b' },
-              c: { name: 'c' },
-            },
-          },
-        },
-        context,
-        {
-          a: 'a',
-          mapped_b: 'b',
-          c: 'c',
-        },
-        {}
-      );
-
-      expect(context).toEqual({
-        a: 'a',
-        b: 'b',
-        c: 'c',
-      });
-    });
-    it('should map a json object to a context property with list option', () => {
-      const context = {};
-
-      Serializer.deserialize(
-        {
-          prototype: {
-            _serializeMap: {
-              a: { name: 'a' },
-              b: { name: 'b', list: true },
-              c: { name: 'c' },
-            },
-          },
-        },
-        context,
-        {
-          a: 'a',
-          b: ['a', 'b', 'c'],
-          c: 'c',
-        },
-        {}
-      );
-
-      expect(context).toEqual({
-        a: 'a',
-        b: ['a', 'b', 'c'],
-        c: 'c',
-      });
-    });
-    it('should map a json object to a context property with type option', () => {
-      const test = function Test(): any {
-        this.deserialize = function() {
-          this.test = 'test';
-        };
-      };
-
-      const context: any = {};
-
-      Serializer.deserialize(
-        {
-          prototype: {
-            _serializeMap: {
-              a: { name: 'a' },
-              b: { name: 'b', type: test },
-              c: { name: 'c' },
-            },
-          },
-        },
-        context,
-        {
-          a: 'a',
-          b: { test: 'test' },
-          c: 'c',
-        },
-        {}
-      );
-
-      expect(context.a).toEqual('a');
-      expect(context.b.test).toEqual('test');
-      expect(context.c).toEqual('c');
-    });
-    it('should map a json object to a context property with both list and type options', () => {
-      const test = function Test(): any {
-        this.deserialize = function(value) {
-          this.test = value.test;
-        };
-      };
-
-      const context: any = {};
-
-      Serializer.deserialize(
-        {
-          prototype: {
-            _serializeMap: {
-              a: { name: 'a' },
-              b: { name: 'b', type: test, list: true },
-              c: { name: 'c' },
-            },
-          },
-        },
-        context,
-        {
-          a: 'a',
-          b: [{ test: 'test1' }, { test: 'test2' }, { test: 'test3' }],
-          c: 'c',
-        },
-        {}
-      );
-
-      expect(context.a).toEqual('a');
-      expect(context.b[0].test).toEqual('test1');
-      expect(context.b[1].test).toEqual('test2');
-      expect(context.b[2].test).toEqual('test3');
-      expect(context.c).toEqual('c');
-    });
-    it('should map a json object to a context property without some properties', () => {
+    it('should return a json object for properties with both list and type options', () => {
       const test = function Test(): void {
         this.serialize = (v: any) => {
           return {
@@ -454,27 +224,292 @@ describe('Serializer', () => {
         };
       };
 
-      const context: any = {};
-
-      Serializer.deserialize(
+      const value = Serializer.serialize(
         {
           prototype: {
             _serializeMap: {
               a: { name: 'a' },
               b: { name: 'b', type: test, optional: true },
               c: { name: 'c', optional: true },
+              d: { name: 'd', list: true, optional: true },
             },
           },
         },
-        context,
         {
-          a: 'a',
-        }
+          a: 'a value',
+        },
+        {}
       );
 
-      expect(context.a).toEqual('a');
-      expect(context.b).toBeInstanceOf(test);
-      expect(context.c).toBeNull();
+      expect(value).toEqual({
+        a: 'a value',
+        b: null,
+        c: null,
+        d: [],
+      });
     });
+  });
+});
+describe('deserialize()', () => {
+  it('should leave the context unchanged if the _serializeMap is empty', () => {
+    const context = {};
+
+    Serializer.deserialize(
+      {
+        prototype: {
+          _serializeMap: {},
+        },
+      },
+      context,
+      {
+        a: 'a',
+        b: 'b',
+        c: 'c',
+      }
+    );
+
+    expect(context).toEqual({});
+  });
+  it('should map a simple json object to an existing context', () => {
+    const context = {};
+
+    Serializer.deserialize(
+      {
+        prototype: {
+          _serializeMap: {
+            a: { name: 'a' },
+            b: { name: 'b' },
+            c: { name: 'c' },
+          },
+        },
+      },
+      context,
+      {
+        a: 'a',
+        b: 'b',
+        c: 'c',
+      }
+    );
+
+    expect(context).toEqual({
+      a: 'a',
+      b: 'b',
+      c: 'c',
+    });
+  });
+  it('should map a json object to a context with class level root option', () => {
+    const context = {};
+
+    Serializer.deserialize(
+      {
+        prototype: {
+          _serializeMap: {
+            a: { name: 'a' },
+            b: { name: 'b' },
+            c: { name: 'c' },
+          },
+        },
+      },
+      context,
+      {
+        someObject: {
+          a: 'a',
+          b: 'b',
+          c: 'c',
+        },
+      },
+      { root: 'someObject' }
+    );
+
+    expect(context).toEqual({
+      a: 'a',
+      b: 'b',
+      c: 'c',
+    });
+  });
+  it('should map a json object to a context property with root option', () => {
+    const context = {};
+
+    Serializer.deserialize(
+      {
+        prototype: {
+          _serializeMap: {
+            a: { name: 'a' },
+            b: { name: 'b', root: 'someObject' },
+            c: { name: 'c' },
+          },
+        },
+      },
+      context,
+      {
+        a: 'a',
+        someObject: {
+          b: 'b',
+        },
+        c: 'c',
+      },
+      {}
+    );
+
+    expect(context).toEqual({
+      a: 'a',
+      b: 'b',
+      c: 'c',
+    });
+  });
+  it('should map a json object to a context property with map option', () => {
+    const context = {};
+
+    Serializer.deserialize(
+      {
+        prototype: {
+          _serializeMap: {
+            a: { name: 'a' },
+            b: { name: 'b', map: 'mapped_b' },
+            c: { name: 'c' },
+          },
+        },
+      },
+      context,
+      {
+        a: 'a',
+        mapped_b: 'b',
+        c: 'c',
+      },
+      {}
+    );
+
+    expect(context).toEqual({
+      a: 'a',
+      b: 'b',
+      c: 'c',
+    });
+  });
+  it('should map a json object to a context property with list option', () => {
+    const context = {};
+
+    Serializer.deserialize(
+      {
+        prototype: {
+          _serializeMap: {
+            a: { name: 'a' },
+            b: { name: 'b', list: true },
+            c: { name: 'c' },
+          },
+        },
+      },
+      context,
+      {
+        a: 'a',
+        b: ['a', 'b', 'c'],
+        c: 'c',
+      },
+      {}
+    );
+
+    expect(context).toEqual({
+      a: 'a',
+      b: ['a', 'b', 'c'],
+      c: 'c',
+    });
+  });
+  it('should map a json object to a context property with type option', () => {
+    const test = function Test(): any {
+      this.deserialize = () => {
+        this.test = 'test';
+      };
+    };
+
+    const context: any = {};
+
+    Serializer.deserialize(
+      {
+        prototype: {
+          _serializeMap: {
+            a: { name: 'a' },
+            b: { name: 'b', type: test },
+            c: { name: 'c' },
+          },
+        },
+      },
+      context,
+      {
+        a: 'a',
+        b: { test: 'test' },
+        c: 'c',
+      },
+      {}
+    );
+
+    expect(context.a).toEqual('a');
+    expect(context.b.test).toEqual('test');
+    expect(context.c).toEqual('c');
+  });
+  it('should map a json object to a context property with both list and type options', () => {
+    const test = function Test(): any {
+      this.deserialize = function(value) {
+        this.test = value.test;
+      };
+    };
+
+    const context: any = {};
+
+    Serializer.deserialize(
+      {
+        prototype: {
+          _serializeMap: {
+            a: { name: 'a' },
+            b: { name: 'b', type: test, list: true },
+            c: { name: 'c' },
+          },
+        },
+      },
+      context,
+      {
+        a: 'a',
+        b: [{ test: 'test1' }, { test: 'test2' }, { test: 'test3' }],
+        c: 'c',
+      },
+      {}
+    );
+
+    expect(context.a).toEqual('a');
+    expect(context.b[0].test).toEqual('test1');
+    expect(context.b[1].test).toEqual('test2');
+    expect(context.b[2].test).toEqual('test3');
+    expect(context.c).toEqual('c');
+  });
+  it('should map a json object to a context property without some properties', () => {
+    const test = function Test(): void {
+      this.serialize = (v: any) => {
+        return {
+          test: v.test,
+        };
+      };
+    };
+
+    const context: any = {};
+
+    Serializer.deserialize(
+      {
+        prototype: {
+          _serializeMap: {
+            a: { name: 'a' },
+            b: { name: 'b', type: test, optional: true },
+            c: { name: 'c', optional: true },
+            d: { name: 'd', list: true, optional: true },
+          },
+        },
+      },
+      context,
+      {
+        a: 'a',
+      }
+    );
+
+    expect(context.a).toEqual('a');
+    expect(context.b).toBeNull();
+    expect(context.c).toBeNull();
+    expect(context.d).toEqual([]);
   });
 });

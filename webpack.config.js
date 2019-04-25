@@ -1,29 +1,22 @@
-const webpack = require('webpack');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
 const path = require('path');
 
 module.exports = {
+	mode: 'production',
 	entry: __dirname + '/ts-serializer',
 	resolve: {
 		extensions: ['.ts']
 	},
-	output:{
-		path: path.join(__dirname, 'dist'),
-		publicPath: '/',
+	output: {
 		filename: 'ts-serializer.js',
-		libraryTarget: 'umd',
-		library: 'TSerializer'
+		path: path.resolve(__dirname, 'dist'),
 	},
 	module: {
-		loaders:[{
-			test: /\.ts?$/,
-			loader: 'ts',
-			exclude: [/node_modules/, /example/]
-		}]
-	},
-	plugins:[
-		new CleanWebpackPlugin(['dist'], {
-			verbose: true
-		})
-	]
+		rules: [
+			{
+				test: /\.ts?$/,
+				loader: 'ts-loader',
+				exclude: [/node_modules/]
+			}
+		]
+	}
 };

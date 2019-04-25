@@ -1,3 +1,6 @@
+# This project is a fork from [dpopescu's project](https://github.com/dpopescu/ts-serializer)
+
+
 # TS Serializer - [![Build Status](https://travis-ci.org/dpopescu/ts-serializer.svg?branch=master)](https://travis-ci.org/dpopescu/ts-serializer) [![NPM Downloads](https://img.shields.io/npm/dt/ts-serializer.svg)](https://img.shields.io/npm/dt/ts-serializer.svg) [![LICENSE](https://img.shields.io/npm/l/ts-serializer.svg)](https://img.shields.io/npm/l/ts-serializer.svg)
 **TS Serializer** provides `TypeScript` decorators to help developers with serializing/deserializing TypeScript classes into and from JSON objects.
  
@@ -211,4 +214,36 @@ instance.deserialize({
 
 console.log(instance.user.firstName); // Prints 'John'
 console.log(instance.user.lastName); // Prints 'Doe'
+```
+
+#### optional
+The `optional` option can be used when the property or the value may not exist. 
+```TypeScript
+@Serialize({})
+class User extends Serializable {
+    @SerializeProperty({})
+    public name:string;
+    @SerializeProperty({
+        optional: true
+    })
+    public age:number;
+} 
+
+@Serialize({})
+class Profile extends Serializable {
+    @SerializeProperty({
+        type: User
+    })
+    public user:User;
+}
+
+let instance:Profile = new Profile();
+instance.deserialize({
+    user: {
+        firstName: 'John',
+    }
+});
+
+console.log(instance.user.firstName); // Prints 'John'
+console.log(instance.user.age); // Prints 'null'
 ```

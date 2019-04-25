@@ -17,13 +17,10 @@ export class Serializer {
    * @returns {any} - The deserialized object.
    */
   private static deserializeItem(options: PropertyOptions, value: object) {
-    if (options.type) {
+    if (options.optional && !value) {
+      return null;
+    } else if (options.type) {
       const item = new options.type();
-
-      if (options.optional && !value) {
-        return item;
-      }
-
       item.deserialize(value);
       return item;
     } else {
@@ -40,7 +37,7 @@ export class Serializer {
    */
   private static serializeItem(options: PropertyOptions, value: any): object {
     if (options.optional && !value) {
-      return value;
+      return null;
     } else if (options.type) {
       return (value as Serializable).serialize();
     } else {
@@ -64,7 +61,7 @@ export class Serializer {
     const result = {};
 
     Object.keys(target.prototype._serializeMap).forEach(name => {
-      const value = context[name];
+      const value = context[name] || null;
       const options = target.prototype._serializeMap[name];
       const rootPath = options.root || classOptions.root || null;
       const mapName = options.map || options.name;

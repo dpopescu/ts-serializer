@@ -1,6 +1,6 @@
-import { Serializable } from '../type/Serializable';
-import { Serialize } from './Serialize';
-import { Serializer } from '../serialize/Serializer';
+import { Serializable } from '../../src/type/Serializable';
+import { Serialize } from '../../src/decorator/Serialize';
+import { Serializer } from '../../src/serialize/Serializer';
 
 describe('Serialize Decorator', () => {
   it('should add serialize and deserialize methods to the target class prototype', () => {

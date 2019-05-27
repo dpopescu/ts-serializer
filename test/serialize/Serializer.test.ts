@@ -1,4 +1,4 @@
-import { Serializer } from './Serializer';
+import { Serializer } from '../../src/serialize/Serializer';
 
 describe('Serializer', () => {
   it('should define methods for serialization and deserialization', () => {

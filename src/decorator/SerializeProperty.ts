@@ -37,11 +37,11 @@ import { PropertyOptions } from '../type/PropertyOptions';
 export function SerializeProperty(
   options: PropertyOptions = {}
 ): PropertyDecorator {
-  return (target: object, name: string) => {
+  return (target: object, name: string | symbol) => {
     if (!target.constructor.prototype._serializeMap) {
       target.constructor.prototype._serializeMap = {};
     }
-    options.name = name;
+    options.name = name as string;
     target.constructor.prototype._serializeMap[name] = options;
   };
 }

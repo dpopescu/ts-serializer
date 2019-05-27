@@ -29,7 +29,7 @@ export abstract class Serializable {
    *
    * @see [[SerializeProperty]]
    */
-  _serializeMap: { string: PropertyOptions };
+  _serializeMap: Record<string, PropertyOptions> = {};
 
   /**
    * @hidden

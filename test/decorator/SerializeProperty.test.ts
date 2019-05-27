@@ -1,5 +1,5 @@
-import { SerializeProperty } from './SerializeProperty';
-import { Serializable } from '../type/Serializable';
+import { SerializeProperty } from '../../src/decorator/SerializeProperty';
+import { Serializable } from '../../src/type/Serializable';
 
 describe('SerializeProperty decorator', () => {
   it('should create an empty serializeMap', () => {

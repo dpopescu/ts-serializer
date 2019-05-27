@@ -1,4 +1,4 @@
-import { Serializable } from './Serializable';
+import { Serializable } from '../../src/type/Serializable';
 
 describe('Serializable', () => {
   it('should throw error if serialize() and deserialize() methods are not overridden', () => {

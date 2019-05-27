@@ -33,9 +33,9 @@ export class Serializer {
    * @see [[SerializeProperty]], [[PropertyOptions.type]]
    * @param options - A set of options to use when serializing this property.
    * @param value - The object to serialize.
-   * @returns {Object} - The serialized object.
+   * @returns {Object | null} - The serialized object.
    */
-  private static serializeItem(options: PropertyOptions, value: any): object {
+  private static serializeItem(options: PropertyOptions, value: any): object | null {
     if (options.optional && !value) {
       return null;
     } else if (options.type) {
@@ -54,11 +54,11 @@ export class Serializer {
    * @returns {object} - The serialized object.
    */
   public static serialize(
-    target,
-    context: object,
+    target: any,
+    context: Record<string, any>,
     classOptions: ClassOptions
   ): object {
-    const result = {};
+    const result: Record<string, any> = {};
 
     Object.keys(target.prototype._serializeMap).forEach(name => {
       const value = context[name] || null;
@@ -76,7 +76,7 @@ export class Serializer {
 
       if (options.list) {
         if (value) {
-          dataTarget[mapName] = value.map(v => this.serializeItem(options, v));
+          dataTarget[mapName] = value.map((v: any) => this.serializeItem(options, v));
         } else {
           dataTarget[mapName] = [];
         }
@@ -97,15 +97,15 @@ export class Serializer {
    * @param classOptions - Class deserialization options.
    */
   public static deserialize(
-    target,
-    context: object,
-    jsonObject: object,
+    target: any,
+    context: Record<string, any>,
+    jsonObject: Record<string, any>,
     classOptions: ClassOptions = {}
   ) {
     Object.keys(target.prototype._serializeMap).forEach(name => {
       const options: PropertyOptions = target.prototype._serializeMap[name];
-      const rootPath: string = options.root || classOptions.root || null;
-      const mapName: string = options.map || options.name;
+      const rootPath: string | null = options.root || classOptions.root || null;
+      const mapName: string = options.map || options.name || '';
       let value: any = jsonObject[mapName] || null;
 
       if (rootPath && rootPath !== '.') {
@@ -114,7 +114,7 @@ export class Serializer {
 
       if (options.list) {
         if (value) {
-          context[name] = value.map(v => this.deserializeItem(options, v));
+          context[name] = value.map((v: any) => this.deserializeItem(options, v));
         } else {
           context[name] = [];
         }

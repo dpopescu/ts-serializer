@@ -248,6 +248,40 @@ describe('Serializer', () => {
         d: [],
       });
     });
+    it('should return a json object with the right negative values', () => {
+      const value = Serializer.serialize(
+        {
+          prototype: {
+            _serializeMap: {
+              a: { name: 'a' },
+              b: { name: 'b' },
+              c: { name: 'c' },
+              d: { name: 'd' },
+              e: { name: 'e' },
+              f: { name: 'f' },
+            },
+          },
+        },
+        {
+          a: true,
+          b: false,
+          c: null,
+          d: undefined,
+          e: 0,
+          f: 1,
+        },
+        {}
+      );
+
+      expect(value).toEqual({
+        a: true,
+        b: false,
+        c: null,
+        d: null,
+        e: 0,
+        f: 1,
+      });
+    });
   });
 });
 describe('deserialize()', () => {
@@ -511,5 +545,39 @@ describe('deserialize()', () => {
     expect(context.b).toBeNull();
     expect(context.c).toBeNull();
     expect(context.d).toEqual([]);
+  });
+  it('should return a json object with the right negative values', () => {
+    const context: any = {};
+
+    Serializer.deserialize(
+      {
+        prototype: {
+          _serializeMap: {
+            a: { name: 'a' },
+            b: { name: 'b' },
+            c: { name: 'c' },
+            d: { name: 'd' },
+            e: { name: 'e' },
+            f: { name: 'f' },
+          },
+        },
+      },
+      context,
+      {
+        a: true,
+        b: false,
+        c: null,
+        d: undefined,
+        e: 0,
+        f: 1,
+      }
+    );
+
+    expect(context.a).toBeTruthy();
+    expect(context.b).toBeFalsy();
+    expect(context.c).toBeNull();
+    expect(context.d).toBeNull();
+    expect(context.e).toEqual(0);
+    expect(context.f).toEqual(1);
   });
 });

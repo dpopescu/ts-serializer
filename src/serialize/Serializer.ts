@@ -17,7 +17,7 @@ export class Serializer {
    * @returns {any} - The deserialized object.
    */
   private static deserializeItem(options: PropertyOptions, value: object) {
-    if (options.optional && !value) {
+    if (options.optional && !isValidValue(value)) {
       return null;
     } else if (options.type) {
       const item = new options.type();
@@ -36,7 +36,7 @@ export class Serializer {
    * @returns {Object | null} - The serialized object.
    */
   private static serializeItem(options: PropertyOptions, value: any): object | null {
-    if (options.optional && !value) {
+    if (options.optional && !isValidValue(value)) {
       return null;
     } else if (options.type) {
       return (value as Serializable).serialize();
@@ -61,7 +61,7 @@ export class Serializer {
     const result: Record<string, any> = {};
 
     Object.keys(target.prototype._serializeMap).forEach(name => {
-      const value = context[name] || null;
+      const value = validateFalseOrZero(context[name]);
       const options = target.prototype._serializeMap[name];
       const rootPath = options.root || classOptions.root || null;
       const mapName = options.map || options.name;
@@ -106,7 +106,7 @@ export class Serializer {
       const options: PropertyOptions = target.prototype._serializeMap[name];
       const rootPath: string | null = options.root || classOptions.root || null;
       const mapName: string = options.map || options.name || '';
-      let value: any = jsonObject[mapName] || null;
+      let value = validateFalseOrZero(jsonObject[mapName]);
 
       if (rootPath && rootPath !== '.') {
         value = jsonObject[rootPath][mapName];
@@ -123,4 +123,12 @@ export class Serializer {
       }
     });
   }
+}
+
+function validateFalseOrZero(value: any): any {
+  return value ? value : value === false || value === 0 ? value : null;
+}
+
+function isValidValue(value: any): boolean {
+  return value ? true : value === false || value === 0 ? true : false;
 }

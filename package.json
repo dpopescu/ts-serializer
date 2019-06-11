@@ -1,6 +1,6 @@
 {
   "name": "@delete21/ts-serializer",
-  "version": "2.1.2",
+  "version": "2.1.2-1",
   "author": {
     "name": "Daniel Popescu",
     "email": "danielpopescu95@gmail.com"
@@ -63,5 +63,9 @@
         "diagnostics": false
       }
     }
+  },
+  "dependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.4.4",
+    "@babel/plugin-proposal-decorators": "^7.4.4"
   }
 }

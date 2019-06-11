@@ -1,6 +1,6 @@
 {
   "name": "@delete21/ts-serializer",
-  "version": "2.1.2-2",
+  "version": "2.1.2-3",
   "author": {
     "name": "Daniel Popescu",
     "email": "danielpopescu95@gmail.com"
@@ -49,6 +49,8 @@
     "trailingComma": "es5"
   },
   "devDependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.4.4",
+    "@babel/plugin-proposal-decorators": "^7.4.4",
     "@types/jest": "^24.0.13",
     "husky": "^2.3.0",
     "prettier": "^1.17.1",
@@ -63,9 +65,5 @@
         "diagnostics": false
       }
     }
-  },
-  "dependencies": {
-    "@babel/plugin-proposal-class-properties": "^7.4.4",
-    "@babel/plugin-proposal-decorators": "^7.4.4"
   }
 }

@@ -31,7 +31,8 @@
     "dist"
   ],
   "scripts": {
-    "build": "webpack"
+    "build": "webpack",
+    "test": "jest --verbose --coverage"
   },
   "peerDependencies": {},
   "prettier": {
@@ -51,6 +52,9 @@
     "webpack-cli": "^3.3.4"
   },
   "jest": {
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
     "globals": {
       "ts-jest": {
         "diagnostics": false

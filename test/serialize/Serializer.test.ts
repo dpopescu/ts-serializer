@@ -150,7 +150,7 @@ describe('Serializer', () => {
       });
     });
     it('should return a json object for properties with type option', () => {
-      const test = function Test(): void {
+      const test: any = function Test(): void {
         this.serialize = () => {
           return {
             test: 'test',
@@ -183,7 +183,7 @@ describe('Serializer', () => {
       });
     });
     it('should return a json object for properties with both list and type options', () => {
-      const test = function Test(): void {
+      const test: any = function Test(): void {
         this.serialize = () => {
           return {
             test: 'test',
@@ -216,7 +216,7 @@ describe('Serializer', () => {
       });
     });
     it('should return a json object for properties with both list and type options', () => {
-      const test = function Test(): void {
+      const test: any = function Test(): void {
         this.serialize = (v: any) => {
           return {
             test: v.test,
@@ -481,7 +481,7 @@ describe('deserialize()', () => {
   });
   it('should map a json object to a context property with both list and type options', () => {
     const test = function Test(): any {
-      this.deserialize = function(value) {
+      this.deserialize = function(value: any) {
         this.test = value.test;
       };
     };

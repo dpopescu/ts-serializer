@@ -32,6 +32,9 @@ The project is not maintained anymore and there are some feature and fixes that 
 `npm install --save @delete21/ts-serializer`
 
 ## Usage
+
+You can find a [codesandbox playground here](https://codesandbox.io/s/ts-serializer-playground-gdbid)!
+
 ### TypeScript
 #### Deserialization:
 ```TypeScript 

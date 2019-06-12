@@ -1,6 +1,6 @@
 {
   "name": "@delete21/ts-serializer",
-  "version": "2.1.2-6",
+  "version": "2.1.2-7",
   "author": {
     "name": "Daniel Popescu",
     "email": "danielpopescu95@gmail.com"
@@ -24,24 +24,16 @@
     "url": "https://github.com/delete/ts-serializer/issues"
   },
   "homepage": "https://github.com/delete/ts-serializer#readme",
-  "main": "dist/index.js",
-  "umd:main": "dist/ts-serializer.umd.production.js",
-  "module": "dist/ts-serializer.es.production.js",
-  "typings": "dist/index.d.ts",
+  "main": "dist/ts-serializer.js",
+  "module": "dist/ts-serializer.js",
+  "typings": "dist/ts-serializer.d.ts",
   "files": [
     "dist"
   ],
   "scripts": {
-    "start": "tsdx watch",
-    "build": "tsdx build",
-    "test": "tsdx test"
+    "build": "webpack"
   },
   "peerDependencies": {},
-  "husky": {
-    "hooks": {
-      "pre-commit": "pretty-quick --staged"
-    }
-  },
   "prettier": {
     "printWidth": 80,
     "semi": true,
@@ -49,15 +41,14 @@
     "trailingComma": "es5"
   },
   "devDependencies": {
-    "@babel/plugin-proposal-class-properties": "^7.4.4",
-    "@babel/plugin-proposal-decorators": "^7.4.4",
     "@types/jest": "^24.0.13",
-    "husky": "^2.3.0",
+    "jest": "^24.8.0",
     "prettier": "^1.17.1",
-    "pretty-quick": "^1.11.0",
-    "tsdx": "^0.5.11",
-    "tslib": "^1.9.3",
-    "typescript": "^3.4.5"
+    "ts-jest": "^24.0.2",
+    "ts-loader": "^6.0.2",
+    "typescript": "^3.4.5",
+    "webpack": "^4.33.0",
+    "webpack-cli": "^3.3.4"
   },
   "jest": {
     "globals": {

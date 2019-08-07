@@ -1,6 +1,7 @@
 {
   "name": "@delete21/ts-serializer",
-  "version": "2.2.1",
+  "version": "2.2.2",
+  "repository": "https://github.com/delete/ts-serializer",
   "author": {
     "name": "Daniel Popescu",
     "email": "danielpopescu95@gmail.com"
@@ -32,7 +33,9 @@
   ],
   "scripts": {
     "build": "webpack",
-    "test": "jest --verbose --coverage"
+    "test": "jest --verbose",
+    "test-coverage": "jest --verbose --coverage",
+    "publish": "npm publish --access=public"
   },
   "peerDependencies": {},
   "prettier": {

@@ -108,7 +108,7 @@ export class Serializer {
       const mapName: string = options.map || options.name || '';
       let value = validateFalseOrZero(jsonObject[mapName]);
 
-      if (rootPath && rootPath !== '.') {
+      if (rootPath && rootPath !== '.' && valueIsDefined(jsonObject[rootPath])) {
         value = jsonObject[rootPath][mapName];
       }
 
@@ -123,6 +123,10 @@ export class Serializer {
       }
     });
   }
+}
+
+function valueIsDefined(value: any): boolean {
+  return value !== undefined && value !== null
 }
 
 function validateFalseOrZero(value: any): any {

@@ -10,5 +10,9 @@
     "target": "es5",
     "jsx": "react",
     "allowJs": true
-  }
+  },
+  "exclude": [
+    "node_modules",
+    "test"
+  ]
 }

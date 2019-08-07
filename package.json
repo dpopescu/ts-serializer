@@ -1,7 +1,7 @@
 {
-  "name": "@delete21/ts-serializer",
+  "name": "ts-serializer",
   "version": "2.2.2",
-  "repository": "https://github.com/delete/ts-serializer",
+  "repository": "https://github.com/dpopescu/ts-serializer",
   "author": {
     "name": "Daniel Popescu",
     "email": "danielpopescu95@gmail.com"
@@ -22,9 +22,9 @@
     "mapping"
   ],
   "bugs": {
-    "url": "https://github.com/delete/ts-serializer/issues"
+    "url": "https://github.com/dpopescu/ts-serializer/issues"
   },
-  "homepage": "https://github.com/delete/ts-serializer#readme",
+  "homepage": "https://github.com/dpopescu/ts-serializer#readme",
   "main": "dist/ts-serializer.js",
   "module": "dist/ts-serializer.js",
   "typings": "dist/ts-serializer.d.ts",

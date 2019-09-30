@@ -1,6 +1,6 @@
 {
   "name": "ts-serializer",
-  "version": "2.2.3",
+  "version": "2.2.4",
   "repository": "https://github.com/dpopescu/ts-serializer",
   "author": {
     "name": "Daniel Popescu",

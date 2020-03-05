@@ -8,6 +8,7 @@ module.exports = {
 		extensions: [ '.tsx', '.ts', '.js' ]
 	  },
 	output:{
+		globalObject: 'this',
 		path: path.join(__dirname, 'dist'),
 		publicPath: '/',
 		filename: 'ts-serializer.js',

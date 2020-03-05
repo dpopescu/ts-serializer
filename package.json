@@ -1,6 +1,6 @@
 {
   "name": "ts-serializer",
-  "version": "2.2.4",
+  "version": "2.2.5",
   "repository": "https://github.com/dpopescu/ts-serializer",
   "author": {
     "name": "Daniel Popescu",
@@ -10,6 +10,10 @@
     {
       "name": "Fellipe Pinheiro",
       "email": "pinheiro.llip@gmail.com"
+    },
+    {
+      "name": "Debasis Kar",
+      "email": "debasis.babun@gmail.com"
     }
   ],
   "license": "Apache-2.0",

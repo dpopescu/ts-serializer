@@ -24,7 +24,8 @@
 
 ## Usage
 
-You can find a [codesandbox playground here](https://codesandbox.io/s/ts-serializer-playground-gdbid)!
+You can find a [codesandbox playground using ReactJS here](https://codesandbox.io/s/ts-serializer-playground-reactjs-gdbid)!
+You can find a [codesandbox playground using NestJS here](https://codesandbox.io/s/ts-serializer-playground-nestjs-m1z2h)!
 
 ### TypeScript
 

@@ -29,12 +29,12 @@ import { ClassOptions } from '../type/ClassOptions';
  * @returns {ClassDecorator}
  */
 export function Serialize(classOptions: ClassOptions): ClassDecorator {
-  return (target): void => {
-    target.prototype.deserialize = function(jsonObject: object): void {
-      Serializer.deserialize(target, this, jsonObject, classOptions);
+    return (target): void => {
+        target.prototype.deserialize = function(jsonObject: object): void {
+            Serializer.deserialize(target, this, jsonObject, classOptions);
+        };
+        target.prototype.serialize = function(): object {
+            return Serializer.serialize(target, this, classOptions);
+        };
     };
-    target.prototype.serialize = function(): object {
-      return Serializer.serialize(target, this, classOptions);
-    };
-  };
 }

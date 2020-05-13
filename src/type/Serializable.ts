@@ -7,32 +7,36 @@ import { PropertyOptions } from './PropertyOptions';
  * will be provided by the [[Serializer]]
  */
 export abstract class Serializable {
-  /**
-   * Serialize as JSON Object
-   */
-  serialize(): any {
-    throw new Error('This is an abstract method. It needs to be overridden.');
-  }
+    /**
+     * Serialize as JSON Object
+     */
+    serialize(): any {
+        throw new Error(
+            'This is an abstract method. It needs to be overridden.'
+        );
+    }
 
-  /**
-   * Deserialize from JSON Object
-   * @param jsonObject - The source object.
-   */
-  // @ts-ignore
-  deserialize(jsonObject: Record<string, any>): void {
-    throw new Error('This is an abstract method. It needs to be overridden.');
-  }
+    /**
+     * Deserialize from JSON Object
+     * @param jsonObject - The source object.
+     */
+    // @ts-ignore
+    deserialize(jsonObject: Record<string, any>): void {
+        throw new Error(
+            'This is an abstract method. It needs to be overridden.'
+        );
+    }
 
-  /**
-   * Keeps track of all decorated properties.
-   * >**Note:** This property should only be used by the [[Serializer]] class
-   *
-   * @see [[SerializeProperty]]
-   */
-  _serializeMap: Record<string, PropertyOptions> = {};
+    /**
+     * Keeps track of all decorated properties.
+     * >**Note:** This property should only be used by the [[Serializer]] class
+     *
+     * @see [[SerializeProperty]]
+     */
+    _serializeMap: Record<string, PropertyOptions> = {};
 
-  /**
-   * @hidden
-   */
-  prototype: any;
+    /**
+     * @hidden
+     */
+    prototype: any;
 }

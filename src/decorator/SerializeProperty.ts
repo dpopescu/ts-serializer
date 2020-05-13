@@ -35,13 +35,13 @@ import { PropertyOptions } from '../type/PropertyOptions';
  * @returns {PropertyDecorator}
  */
 export function SerializeProperty(
-  options: PropertyOptions = {}
+    options: PropertyOptions = {}
 ): PropertyDecorator {
-  return (target: object, name: string | symbol) => {
-    if (!target.constructor.prototype._serializeMap) {
-      target.constructor.prototype._serializeMap = {};
-    }
-    options.name = name as string;
-    target.constructor.prototype._serializeMap[name] = options;
-  };
+    return (target: object, name: string | symbol) => {
+        if (!target.constructor.prototype._serializeMap) {
+            target.constructor.prototype._serializeMap = {};
+        }
+        options.name = name as string;
+        target.constructor.prototype._serializeMap[name] = options;
+    };
 }

@@ -1,4 +1,4 @@
-import {Serializer} from '../../src/serialize/Serializer';
+import { Serializer } from '../../src/serialize/Serializer';
 
 describe('Serializer', () => {
     it('should define methods for serialization and deserialization', () => {
@@ -25,9 +25,9 @@ describe('Serializer', () => {
                 {
                     prototype: {
                         _serializeMap: {
-                            a: {name: 'a'},
-                            b: {name: 'b'},
-                            c: {name: 'c'},
+                            a: { name: 'a' },
+                            b: { name: 'b' },
+                            c: { name: 'c' },
                         },
                     },
                 },
@@ -50,9 +50,9 @@ describe('Serializer', () => {
                 {
                     prototype: {
                         _serializeMap: {
-                            a: {name: 'a'},
-                            b: {name: 'b', map: 'mapped_b'},
-                            c: {name: 'c'},
+                            a: { name: 'a' },
+                            b: { name: 'b', map: 'mapped_b' },
+                            c: { name: 'c' },
                         },
                     },
                 },
@@ -75,9 +75,9 @@ describe('Serializer', () => {
                 {
                     prototype: {
                         _serializeMap: {
-                            a: {name: 'a'},
-                            b: {name: 'b', root: 'someObject'},
-                            c: {name: 'c'},
+                            a: { name: 'a' },
+                            b: { name: 'b', root: 'someObject' },
+                            c: { name: 'c' },
                         },
                     },
                 },
@@ -102,9 +102,9 @@ describe('Serializer', () => {
                 {
                     prototype: {
                         _serializeMap: {
-                            a: {name: 'a'},
-                            b: {name: 'b'},
-                            c: {name: 'c'},
+                            a: { name: 'a' },
+                            b: { name: 'b' },
+                            c: { name: 'c' },
                         },
                     },
                 },
@@ -113,7 +113,7 @@ describe('Serializer', () => {
                     b: 'b value',
                     c: 'c value',
                 },
-                {root: 'someObject'}
+                { root: 'someObject' }
             );
 
             expect(value).toEqual({
@@ -129,9 +129,9 @@ describe('Serializer', () => {
                 {
                     prototype: {
                         _serializeMap: {
-                            a: {name: 'a'},
-                            b: {name: 'b', list: true},
-                            c: {name: 'c'},
+                            a: { name: 'a' },
+                            b: { name: 'b', list: true },
+                            c: { name: 'c' },
                         },
                     },
                 },
@@ -162,9 +162,9 @@ describe('Serializer', () => {
                 {
                     prototype: {
                         _serializeMap: {
-                            a: {name: 'a'},
-                            b: {name: 'b', type: test},
-                            c: {name: 'c'},
+                            a: { name: 'a' },
+                            b: { name: 'b', type: test },
+                            c: { name: 'c' },
                         },
                     },
                 },
@@ -178,7 +178,7 @@ describe('Serializer', () => {
 
             expect(value).toEqual({
                 a: 'a value',
-                b: {test: 'test'},
+                b: { test: 'test' },
                 c: 'c value',
             });
         });
@@ -195,9 +195,9 @@ describe('Serializer', () => {
                 {
                     prototype: {
                         _serializeMap: {
-                            a: {name: 'a'},
-                            b: {name: 'b', list: true, type: test},
-                            c: {name: 'c'},
+                            a: { name: 'a' },
+                            b: { name: 'b', list: true, type: test },
+                            c: { name: 'c' },
                         },
                     },
                 },
@@ -211,7 +211,7 @@ describe('Serializer', () => {
 
             expect(value).toEqual({
                 a: 'a value',
-                b: [{test: 'test'}, {test: 'test'}, {test: 'test'}],
+                b: [{ test: 'test' }, { test: 'test' }, { test: 'test' }],
                 c: 'c value',
             });
         });
@@ -228,10 +228,10 @@ describe('Serializer', () => {
                 {
                     prototype: {
                         _serializeMap: {
-                            a: {name: 'a'},
-                            b: {name: 'b', type: test, optional: true},
-                            c: {name: 'c', optional: true},
-                            d: {name: 'd', list: true, optional: true},
+                            a: { name: 'a' },
+                            b: { name: 'b', type: test, optional: true },
+                            c: { name: 'c', optional: true },
+                            d: { name: 'd', list: true, optional: true },
                         },
                     },
                 },
@@ -253,12 +253,12 @@ describe('Serializer', () => {
                 {
                     prototype: {
                         _serializeMap: {
-                            a: {name: 'a'},
-                            b: {name: 'b'},
-                            c: {name: 'c'},
-                            d: {name: 'd'},
-                            e: {name: 'e'},
-                            f: {name: 'f'},
+                            a: { name: 'a' },
+                            b: { name: 'b' },
+                            c: { name: 'c' },
+                            d: { name: 'd' },
+                            e: { name: 'e' },
+                            f: { name: 'f' },
                         },
                     },
                 },
@@ -311,9 +311,9 @@ describe('deserialize()', () => {
             {
                 prototype: {
                     _serializeMap: {
-                        a: {name: 'a'},
-                        b: {name: 'b'},
-                        c: {name: 'c'},
+                        a: { name: 'a' },
+                        b: { name: 'b' },
+                        c: { name: 'c' },
                     },
                 },
             },
@@ -338,9 +338,9 @@ describe('deserialize()', () => {
             {
                 prototype: {
                     _serializeMap: {
-                        a: {name: 'a'},
-                        b: {name: 'b'},
-                        c: {name: 'c'},
+                        a: { name: 'a' },
+                        b: { name: 'b' },
+                        c: { name: 'c' },
                     },
                 },
             },
@@ -352,7 +352,7 @@ describe('deserialize()', () => {
                     c: 'c',
                 },
             },
-            {root: 'someObject'}
+            { root: 'someObject' }
         );
 
         expect(context).toEqual({
@@ -368,9 +368,9 @@ describe('deserialize()', () => {
             {
                 prototype: {
                     _serializeMap: {
-                        a: {name: 'a'},
-                        b: {name: 'b', root: 'someObject'},
-                        c: {name: 'c'},
+                        a: { name: 'a' },
+                        b: { name: 'b', root: 'someObject' },
+                        c: { name: 'c' },
                     },
                 },
             },
@@ -398,9 +398,9 @@ describe('deserialize()', () => {
             {
                 prototype: {
                     _serializeMap: {
-                        a: {name: 'a'},
-                        b: {name: 'b', map: 'mapped_b'},
-                        c: {name: 'c'},
+                        a: { name: 'a' },
+                        b: { name: 'b', map: 'mapped_b' },
+                        c: { name: 'c' },
                     },
                 },
             },
@@ -426,9 +426,9 @@ describe('deserialize()', () => {
             {
                 prototype: {
                     _serializeMap: {
-                        a: {name: 'a'},
-                        b: {name: 'b', list: true},
-                        c: {name: 'c'},
+                        a: { name: 'a' },
+                        b: { name: 'b', list: true },
+                        c: { name: 'c' },
                     },
                 },
             },
@@ -460,16 +460,16 @@ describe('deserialize()', () => {
             {
                 prototype: {
                     _serializeMap: {
-                        a: {name: 'a'},
-                        b: {name: 'b', type: test},
-                        c: {name: 'c'},
+                        a: { name: 'a' },
+                        b: { name: 'b', type: test },
+                        c: { name: 'c' },
                     },
                 },
             },
             context,
             {
                 a: 'a',
-                b: {test: 'test'},
+                b: { test: 'test' },
                 c: 'c',
             },
             {}
@@ -481,7 +481,7 @@ describe('deserialize()', () => {
     });
     it('should map a json object to a context property with both list and type options', () => {
         const test = function Test(): any {
-            this.deserialize = function (value: any) {
+            this.deserialize = function(value: any) {
                 this.test = value.test;
             };
         };
@@ -492,16 +492,16 @@ describe('deserialize()', () => {
             {
                 prototype: {
                     _serializeMap: {
-                        a: {name: 'a'},
-                        b: {name: 'b', type: test, list: true},
-                        c: {name: 'c'},
+                        a: { name: 'a' },
+                        b: { name: 'b', type: test, list: true },
+                        c: { name: 'c' },
                     },
                 },
             },
             context,
             {
                 a: 'a',
-                b: [{test: 'test1'}, {test: 'test2'}, {test: 'test3'}],
+                b: [{ test: 'test1' }, { test: 'test2' }, { test: 'test3' }],
                 c: 'c',
             },
             {}
@@ -528,10 +528,10 @@ describe('deserialize()', () => {
             {
                 prototype: {
                     _serializeMap: {
-                        a: {name: 'a'},
-                        b: {name: 'b', type: test, optional: true},
-                        c: {name: 'c', optional: true},
-                        d: {name: 'd', list: true, optional: true},
+                        a: { name: 'a' },
+                        b: { name: 'b', type: test, optional: true },
+                        c: { name: 'c', optional: true },
+                        d: { name: 'd', list: true, optional: true },
                     },
                 },
             },
@@ -553,12 +553,12 @@ describe('deserialize()', () => {
             {
                 prototype: {
                     _serializeMap: {
-                        a: {name: 'a'},
-                        b: {name: 'b'},
-                        c: {name: 'c'},
-                        d: {name: 'd'},
-                        e: {name: 'e'},
-                        f: {name: 'f'},
+                        a: { name: 'a' },
+                        b: { name: 'b' },
+                        c: { name: 'c' },
+                        d: { name: 'd' },
+                        e: { name: 'e' },
+                        f: { name: 'f' },
                     },
                 },
             },
@@ -587,13 +587,13 @@ describe('deserialize()', () => {
             {
                 prototype: {
                     _serializeMap: {
-                        a: {name: 'a'},
-                        b: {name: 'b'},
-                        c: {name: 'c'},
-                        d: {name: 'd'},
-                        e: {name: 'e'},
-                        f: {name: 'f'},
-                        g: {optional: true, map: 'mapName', root: 'rootName'}
+                        a: { name: 'a' },
+                        b: { name: 'b' },
+                        c: { name: 'c' },
+                        d: { name: 'd' },
+                        e: { name: 'e' },
+                        f: { name: 'f' },
+                        g: { optional: true, map: 'mapName', root: 'rootName' },
                     },
                 },
             },
